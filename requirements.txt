@@ -7,3 +7,4 @@ pandas
 reportlab
 sentence-transformers
 torch
+fpdf
