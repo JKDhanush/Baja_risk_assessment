@@ -1,5 +1,5 @@
-import os
 import re
+import io
 from fpdf import FPDF
 
 
@@ -23,10 +23,10 @@ def clean(text):
 
     cleaned_lines = []
     for line in text.split("\n"):
-        # Remove standalone numeric-only lines (e.g., "59.7")
+        # Remove standalone numeric-only lines
         if re.fullmatch(r"\s*\d+(\.\d+)?\s*", line):
             continue
-        # Remove duplicate quantitative headers if LLM outputs them
+        # Remove duplicate quantitative headers
         if line.strip().lower() == "quantitative risk indicators":
             continue
         cleaned_lines.append(line)
@@ -45,17 +45,10 @@ def is_table_separator(line):
 
 
 def is_real_table(lines, index):
-    """
-    A real table must:
-    - Have at least 2 pipe characters
-    - Be followed by another pipe-row or a separator
-    """
     if lines[index].count("|") < 2:
         return False
-
     if index + 1 >= len(lines):
         return False
-
     next_line = lines[index + 1].strip()
     return "|" in next_line or is_table_separator(next_line)
 
@@ -115,10 +108,8 @@ def draw_table(pdf, rows):
             pdf.ln()
 
 
-# ---------------- PDF GENERATION ---------------- #
+# ---------------- PDF GENERATION (STREAMLIT SAFE) ---------------- #
 def generate_pdf(report_text, ml_results):
-    os.makedirs("reports", exist_ok=True)
-
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=20)
     pdf.add_page()
@@ -145,7 +136,7 @@ def generate_pdf(report_text, ml_results):
             i += 1
             continue
 
-        # Section headings (1. Executive Summary etc.)
+        # Section headings
         if line[0].isdigit() and "." in line[:3]:
             pdf.ln(6)
             pdf.set_font("Arial", "B", 14)
@@ -155,12 +146,11 @@ def generate_pdf(report_text, ml_results):
             i += 1
             continue
 
-        # STRICT table detection
+        # Tables
         if is_real_table(lines, i):
             table, new_i = parse_table(lines, i)
             col_count = len(table[0])
 
-            # Validate consistent columns
             if all(len(row) == col_count for row in table):
                 pdf.ln(4)
                 draw_table(pdf, table)
@@ -178,25 +168,16 @@ def generate_pdf(report_text, ml_results):
         pdf.multi_cell(0, 7, line)
         i += 1
 
-    # ---------------- FINAL QUANTITATIVE SECTION ---------------- #
+    # -------- Quantitative Section -------- #
     pdf.ln(8)
     pdf.set_font("Arial", "B", 14)
     pdf.cell(0, 9, "Quantitative Risk Indicators", ln=True)
     pdf.ln(3)
 
     pdf.set_font("Arial", size=11)
-    pdf.multi_cell(
-        0, 7,
-        f"Overall Risk Classification : {ml_results.get('risk_classifier', 'N/A')}"
-    )
-    pdf.multi_cell(
-        0, 7,
-        f"Estimated Schedule Delay     : {ml_results.get('delay_predictor', 'N/A')} days"
-    )
-    pdf.multi_cell(
-        0, 7,
-        f"Estimated Cost Overrun       : {ml_results.get('cost_overrun_predictor', 'N/A')} %"
-    )
+    pdf.multi_cell(0, 7, f"Overall Risk Classification : {ml_results.get('risk_classifier', 'N/A')}")
+    pdf.multi_cell(0, 7, f"Estimated Schedule Delay     : {ml_results.get('delay_predictor', 'N/A')} days")
+    pdf.multi_cell(0, 7, f"Estimated Cost Overrun       : {ml_results.get('cost_overrun_predictor', 'N/A')} %")
 
     # Footer
     pdf.ln(12)
@@ -206,4 +187,6 @@ def generate_pdf(report_text, ml_results):
         "Prepared for strategic decision-making using publicly available information."
     )
 
-    pdf.output("reports/AI_Risk_Assessment_Report.pdf")
+    # 🔑 IMPORTANT: return PDF as BYTES (not file)
+    pdf_bytes = pdf.output(dest="S").encode("latin-1")
+    return pdf_bytes

@@ -188,14 +188,13 @@ Context:
 
         report_text = remove_think_blocks(call_llm(writer_prompt))
 
-        # -------- PDF GENERATION -------- #
-        generate_pdf(report_text, ml_results)
+        # -------- PDF GENERATION (IN-MEMORY) -------- #
+        pdf_bytes = generate_pdf(report_text, ml_results)
 
-    # -------- DOWNLOAD -------- #
-    with open("reports/AI_Risk_Assessment_Report.pdf", "rb") as f:
-        st.download_button(
-            label="📄 Download Risk Assessment Report (PDF)",
-            data=f,
-            file_name="AI_Risk_Assessment_Report.pdf",
-            mime="application/pdf"
-        )
+    # -------- DOWNLOAD BUTTON -------- #
+    st.download_button(
+        label="📄 Download Risk Assessment Report (PDF)",
+        data=pdf_bytes,
+        file_name="AI_Risk_Assessment_Report.pdf",
+        mime="application/pdf"
+    )
