@@ -1,0 +1,7 @@
+streamlit
+groq
+faiss-cpu
+numpy
+scikit-learn
+pandas
+reportlab

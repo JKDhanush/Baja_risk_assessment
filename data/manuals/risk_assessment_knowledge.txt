@@ -1,0 +1,78 @@
+AI-ASSISTED RISK ASSESSMENT AND MITIGATION KNOWLEDGE BASE
+FOR SAE BAJA BUSINESS AND OPERATIONS
+
+SECTION 1: OVERVIEW OF RISK IN SAE BAJA PROJECTS
+
+SAE Baja vehicle development involves uncertainties related to procurement, manufacturing, logistics, budgeting, and external disruptions. These risks influence project timelines, vehicle readiness, cost control, and competition performance. Systematic risk assessment helps teams anticipate problems early and plan mitigation strategies in advance rather than reacting after failures occur.
+
+SECTION 2: SUPPLY CHAIN RISK INFORMATION
+
+Raw material prices such as steel, aluminum, rubber, and fuel are subject to market fluctuations due to inflation, demand–supply imbalance, and global economic conditions. Sudden price increases can negatively affect the project budget if procurement decisions are delayed.
+
+Supplier dependency is a critical risk factor. Relying on a single supplier increases the likelihood of delays caused by vendor unavailability, transportation issues, or production bottlenecks. Using multiple suppliers reduces exposure to such risks.
+
+Lead time variability is another major supply chain risk. Delivery times may increase due to transportation delays, seasonal demand, or supplier workload. Longer and unpredictable lead times raise schedule uncertainty.
+
+SECTION 3: MANUFACTURING AND OPERATIONS RISK
+
+Manufacturing delays may occur due to limited machine availability, unexpected tool wear or breakage, operator dependency, or rework caused by quality issues. These delays reduce available testing time and increase last-minute workload.
+
+Quality-related risks arise from inconsistent machining, improper assembly, or insufficient inspection. Quality failures often result in rework, additional cost, and reduced vehicle reliability during endurance events.
+
+SECTION 4: LOGISTICS AND TRANSPORTATION RISK
+
+Transportation of the vehicle and components is vulnerable to external factors such as weather conditions, traffic congestion, regulatory inspections, and last-minute scheduling changes. Delays close to competition dates have a high impact on overall preparedness.
+
+Damage during transit is another risk. Improper packaging or handling may cause structural damage, misalignment of components, or the need for additional repairs, increasing both cost and time loss.
+
+SECTION 5: MARKET AND FINANCIAL RISK
+
+Budget overruns can occur due to cost inflation, emergency procurement, repeated rework, or unexpected logistics expenses. Poor forecasting and lack of financial buffers increase financial vulnerability.
+
+Sponsorship dependency introduces uncertainty when funding is delayed, reduced, or withdrawn. This may affect procurement timelines, manufacturing decisions, and overall project scope.
+
+SECTION 6: HISTORICAL DISRUPTION PATTERNS
+
+Past Baja project experiences indicate that procurement delays are common when ordering is done late in the season. Manufacturing bottlenecks typically increase near submission deadlines. Logistics risks peak close to competition dates, while budget pressure is highest during the final stages of vehicle assembly and testing.
+
+SECTION 7: RISK ATTRIBUTES USED FOR AI ANALYSIS
+
+Each identified risk can be described using the following attributes:
+Probability of occurrence
+Severity of impact
+Cost sensitivity
+Time delay impact
+Dependency level
+Historical frequency
+
+These attributes enable AI systems to evaluate, compare, and prioritize risks effectively.
+
+SECTION 8: RISK SCORING AND PRIORITIZATION LOGIC
+
+Risk priority can be calculated using a Risk Priority Index, defined as the product of probability and impact. Risks with higher priority values require earlier and stronger mitigation actions.
+
+SECTION 9: AI-GENERATED RISK INSIGHTS
+
+AI-based analysis can identify patterns such as strong relationships between delayed procurement and cost escalation, increased manufacturing risk due to machine dependency, and higher logistics risk during peak transportation periods. These insights help teams focus on the most critical risk drivers.
+
+SECTION 10: MITIGATION STRATEGY GUIDELINES
+
+Supply chain risks can be mitigated through early procurement, dual sourcing, and buffer planning with suppliers.
+
+Manufacturing risks can be reduced using buffer schedules, preventive maintenance, process standardization, and quality checks.
+
+Logistics risks can be addressed through early dispatch planning, protective packaging, and contingency transportation options.
+
+Financial risks can be controlled by maintaining budget buffers, continuous cost tracking, and priority-based spending decisions.
+
+SECTION 11: ROLE OF AI IN DECISION SUPPORT
+
+AI supports risk assessment by providing objective prioritization, reducing human bias, enabling proactive planning, and supporting data-driven decisions. AI does not replace human judgment but strengthens decision-making quality.
+
+SECTION 12: PRACTICAL IMPLEMENTATION CONTEXT
+
+The AI-assisted risk assessment approach is suitable for small engineering teams and budget-constrained projects operating in dynamic competition environments. It relies on publicly available data and historical patterns, making it practical and scalable.
+
+SECTION 13: CONCLUSION
+
+Integrating AI into risk assessment enables predictive and structured management of uncertainties. This approach improves schedule reliability, cost control, and overall robustness of SAE Baja projects.
